@@ -1,0 +1,24 @@
+{
+  "name": "Commute Lookup",
+  "short_name": "Commute Lookup",
+  "version": "0.0.1",
+  "description": "Commute Lookup",
+  "icons": {},
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "contextMenus"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
