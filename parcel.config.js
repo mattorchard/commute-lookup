@@ -4,12 +4,9 @@ const fs = require("fs");
 
 const resolvePath = relativePath => Path.join(__dirname, relativePath);
 
-const entryFiles = [
-  "./src/background.js",
-  "./src/content.js",
-  "./src/options.html",
-  "./src/popup.html",
-].map(resolvePath);
+const entryFiles = ["./src/background.js", "./src/options.html"].map(
+  resolvePath
+);
 
 const options = { hmr: false };
 
