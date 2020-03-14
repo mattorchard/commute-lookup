@@ -1,8 +1,17 @@
-import { createMapsUrl } from "./helpers/googleMapsHelpers";
+import { createMapsUrlExperimental } from "./helpers/googleMapsHelpers";
+import { subscribeToSettings } from "./helpers/settingsHelpers";
+import { getNextCommutingTime } from "./helpers/dateHelpers";
+
+const settings = {};
+
+// noinspection JSIgnoredPromiseFromCall, no need to wait for initial value
+subscribeToSettings(newSettings => Object.assign(settings, newSettings));
 
 const handleContextMenuClick = ({ selectionText: origin }) => {
-  // Todo: Get destination from settings
-  const url = createMapsUrl(origin, "Null");
+  const url = createMapsUrlExperimental(origin, settings.destination || "", {
+    arriveBy: getNextCommutingTime(),
+  });
+  console.log("Created url", url);
   window.open(url, "_blank");
 };
 
