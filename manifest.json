@@ -1,7 +1,7 @@
 {
   "name": "Commute Lookup",
   "short_name": "Commute Lookup",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Commute Lookup",
   "icons": {},
   "options_page": "options.html",

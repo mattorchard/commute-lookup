@@ -1,13 +1,20 @@
 import { createMapsUrlExperimental } from "./helpers/googleMapsHelpers";
 import { subscribeToSettings } from "./helpers/settingsHelpers";
 import { getNextCommutingTime } from "./helpers/dateHelpers";
+import { ignoreInAddressPattern } from "./helpers/regexHelpers";
 
 const settings = {};
-
 // noinspection JSIgnoredPromiseFromCall, no need to wait for initial value
 subscribeToSettings(newSettings => Object.assign(settings, newSettings));
 
-const handleContextMenuClick = ({ selectionText: origin }) => {
+const getAddressFromSelection = rawText =>
+  rawText
+    .replace(ignoreInAddressPattern, "")
+    .trimStart()
+    .trimEnd();
+
+const handleContextMenuClick = ({ selectionText }) => {
+  const origin = getAddressFromSelection(selectionText);
   const url = createMapsUrlExperimental(origin, settings.destination || "", {
     arriveBy: getNextCommutingTime(),
   });
